@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    style="@style/Survey">
+    <TextView
+        android:id="@+id/Question1"
+        style="@style/SurveyQuestion"
+        android:text="test"/>
+
+    <EditText
+        android:id="@+id/Answer1"
+        style="@style/SurveyAnswer"
+        android:inputType="text"/>
+
+    <include layout="@layout/survey_next_btn"/>
+
+</LinearLayout>

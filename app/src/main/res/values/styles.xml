@@ -1,0 +1,126 @@
+<resources xmlns:android="http://schemas.android.com/tools">
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.WeeklyDeviceSharingPopUpTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MatchParent">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="WrapContent">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="FitWidth">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="FitHeight">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="Survey"
+        parent="@style/MatchParent">
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+        <item name="android:paddingBottom">@dimen/activity_vertical_margin</item>
+    </style>
+
+    <style name="SurveyQuestion"
+        parent="@style/WrapContent">
+        <item name="android:textSize">@dimen/survey_question_text_size</item>
+    </style>
+
+    <style name="SurveyAnswer"
+        parent="@style/FitWidth">
+        <item name="android:layout_marginTop">@dimen/margin_10dp</item>
+        <item name="android:layout_marginBottom">@dimen/margin_10dp</item>
+        <item name="android:textSize">@dimen/survey_answer_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:hint">@string/SurveyQuestionHint</item>
+    </style>
+
+    <style name="BaseButton"
+        parent="WrapContent">
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="NextButton.Active"
+        parent="BaseButton">
+        <item name="android:background">@drawable/next_button</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:text">@string/next</item>
+    </style>
+
+    <style name="NextButton.Inactive"
+        parent="BaseButton">
+        <item name="android:background">@drawable/next_button_inactive</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:text">@string/next</item>
+        <item name="android:clickable">false</item>
+        <item name="android:enabled">false</item>
+    </style>
+
+    <style name="BackButton"
+        parent="BaseButton">
+        <item name="android:background">@drawable/back_button</item>
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+
+    <style name="Answer.RadioButton"
+        parent="FitWidth">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textSize">@dimen/survey_question_text_size</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawableRight">?android:attr/listChoiceIndicatorSingle</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:paddingBottom">@dimen/padding_20</item>
+    </style>
+
+    <style name="Question.Component"
+        parent="FitWidth">
+        <item name="android:layout_height">0dp</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="Question.Component.Body"
+        parent="Question.Component">
+        <item name="android:layout_weight">3</item>
+    </style>
+
+    <style name="Question.Component.Footer"
+        parent="Question.Component">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+</resources>

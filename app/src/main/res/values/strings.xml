@@ -1,0 +1,45 @@
+<resources>
+    <!--Questions for Weekly Device Sharing Questionnaire.-->
+    <string name="title_activity_weekly_device_sharing_questionnaire">
+        WeeklyDeviceSharingQuestionnaire
+    </string>
+    <string name="DeviceSharingQuestion1">Would you be concerned someone in your social circle is
+        able to access this device<b>without your permission</b>?
+    </string>
+    <string name="DeviceSharingQuestion2_head">Since last</string>
+    <string name="DeviceSharingQuestion2_tail">HOW MANY TIMES have you shared this device with
+        others in last week?
+    </string>
+    <string name="DeviceSharingQuestion3">What kind of people did you share this device with?
+        (Choose all that apply.)
+    </string>
+    <string name="SurveyQuestionHint">Please write your answer here.</string>
+    <string name="DeviceSharing_Q3_a">Friends</string>
+    <string name="DeviceSharing_Q3_b">Family</string>
+    <string name="DeviceSharing_Q3_c">Workmates</string>
+    <string name="DeviceSharing_Q3_d">Unknown people</string>
+    <string name="DeviceSharing_Q3_e">Other (Please specify.)</string>
+    <string name="pleaseSpecify">Please specify your answer here.</string>
+    <string name="SetWeeklyDeviceSharingSurveyPopupDay">Please choose a weekday that you are willing to fill in the weekly device sharing survey.</string>
+    <string name="Monday">Monday</string>
+    <string name="Tuesday">Tuesday</string>
+    <string name="Wednesday">Wednesday</string>
+    <string name="Thursday">Thursday</string>
+    <string name="Friday">Friday</string>
+    <!--End.-->
+
+    <string-array name="answer_array">
+        <item></item>
+        <item>Less than High School</item>
+        <item>High School</item>
+        <item>University (Bachelor’s)</item>
+        <item>Graduate School (Master or PhD)</item>
+        <item>Professional School</item>
+    </string-array>
+
+    <string name="app_name">Survey</string>
+
+    <string name="action_settings">setting</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+</resources>

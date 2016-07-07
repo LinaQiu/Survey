@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    style="@style/Survey">
+
+    <TextView
+        android:id="@+id/Question3"
+        style="@style/SurveyQuestion"
+        android:text="test"/>
+
+    <LinearLayout
+        style="@style/SurveyQuestion"
+        android:orientation="vertical">
+
+        <CheckBox
+            style="@style/WrapContent"
+            android:text="@string/DeviceSharing_Q3_a"/>
+
+        <CheckBox
+            style="@style/WrapContent"
+            android:text="@string/DeviceSharing_Q3_b"/>
+
+        <CheckBox
+            style="@style/WrapContent"
+            android:text="@string/DeviceSharing_Q3_c"/>
+
+        <CheckBox
+            style="@style/WrapContent"
+            android:text="@string/DeviceSharing_Q3_d"/>
+
+        <CheckBox
+            style="@style/WrapContent"
+            android:text="@string/DeviceSharing_Q3_e"/>
+        <EditText
+            style="@style/SurveyAnswer"
+            android:hint="@string/pleaseSpecify"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        style="@style/FitWidth">
+        <include layout="@layout/survey_back_btn"/>
+        <include layout="@layout/survey_next_btn"/>
+    </RelativeLayout>
+</LinearLayout>
