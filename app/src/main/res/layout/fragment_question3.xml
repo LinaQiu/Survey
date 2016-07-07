@@ -36,9 +36,6 @@
             android:hint="@string/pleaseSpecify"/>
     </LinearLayout>
 
-    <RelativeLayout
-        style="@style/FitWidth">
-        <include layout="@layout/survey_back_btn"/>
-        <include layout="@layout/survey_next_btn"/>
-    </RelativeLayout>
+    <include layout="@layout/survey_next_back_btn"/>
+
 </LinearLayout>

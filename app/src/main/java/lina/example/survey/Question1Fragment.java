@@ -2,6 +2,7 @@ package lina.example.survey;
 
 import org.greenrobot.eventbus.EventBus;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,13 +22,16 @@ import butterknife.OnClick;
 /**
  * Created by lina on 2016-07-06.
  */
-public class Question1Fragment extends Fragment {
+public class Question1Fragment extends BaseFragment {
 
     @BindView(R.id.Question1)
     TextView tvQuestion1;
 
     @BindView(R.id.weekly_device_survey_next_button_active)
     Button btnNextActive;
+
+    @BindView(R.id.weekly_device_survey_back_button)
+    Button btnBack;
 
     @BindView(R.id.Answer1)
     EditText etAnswer1;
@@ -40,30 +44,29 @@ public class Question1Fragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View question1 = inflater.inflate(R.layout.fragment_question1, container, false);
-        ButterKnife.bind(this, question1);
-        tvQuestion1.setText(getString(R.string.DeviceSharingQuestion1));
-        return question1;
+    public int getLayout() {
+        return R.layout.fragment_question1;
+    }
+
+    @Override
+    public void setup(){
+        setQuestion(getString(R.string.DeviceSharingQuestion1));
+        disableBackBtn();
+    }
+
+    public void setQuestion(String question) {
+        tvQuestion1.setText(question);
+    }
+
+    public void disableBackBtn() {
+        btnBack.setClickable(false);
+        btnBack.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.weekly_device_survey_next_button_active)
     public void onNextBtnClick() {
         String userAnswer = etAnswer1.getText().toString();
         Log.i("LinaTest", "userAnswer1: " + userAnswer);
-        changeFragment();
-        EventBus.getDefault()
-            .post(new WeeklyDeviceSharingSurveyQuestions(WeeklyDeviceSharingSurveyQuestions.From.WEEKLY_DEVICE_SHARING_SURVEY_QUESTION1));
-    }
-
-    public void changeFragment() {
-        Fragment fragment = Question2Fragment.newInstance();
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        if (transaction.isAddToBackStackAllowed()){
-            transaction.addToBackStack(null);
-        }
-        transaction.replace(R.id.container, fragment);
-        transaction.commit();
+        changeFragment(Question2Fragment.newInstance());
     }
 }

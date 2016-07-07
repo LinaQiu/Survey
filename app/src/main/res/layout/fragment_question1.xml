@@ -12,6 +12,6 @@
         style="@style/SurveyAnswer"
         android:inputType="text"/>
 
-    <include layout="@layout/survey_next_btn"/>
+    <include layout="@layout/survey_next_back_btn"/>
 
 </LinearLayout>

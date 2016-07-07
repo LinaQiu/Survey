@@ -5,11 +5,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by lina on 2016-07-06.
  */
-public class Question3Fragment extends Fragment {
+public class Question3Fragment extends BaseFragment {
+
+    @BindView(R.id.Question3)
+    TextView tvQuestion3;
+
+    @BindView(R.id.weekly_device_survey_next_button_active)
+    Button btnNextActive;
+
     public static final Question3Fragment newInstance() {
         Bundle args =  new Bundle();
         Question3Fragment fragment = new Question3Fragment();
@@ -18,7 +30,21 @@ public class Question3Fragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_question3, container, false);
+    public int getLayout() {
+        return R.layout.fragment_question3;
+    }
+
+    @Override
+    public void setup(){
+        setQuestion(getString(R.string.DeviceSharingQuestion3));
+    }
+
+    public void setQuestion(String question) {
+        tvQuestion3.setText(question);
+    }
+
+    @OnClick(R.id.weekly_device_survey_next_button_active)
+    public void onNextBtnClick(){
+        changeFragment(SubmitFragment.newInstance());
     }
 }

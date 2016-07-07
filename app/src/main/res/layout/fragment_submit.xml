@@ -4,15 +4,11 @@
     style="@style/Survey">
 
     <TextView
-        android:id="@+id/Question2"
+        android:id="@+id/tv_submit"
         style="@style/SurveyQuestion"
-        android:text="test"/>
+        android:text="@string/readyToSubmit"
+        android:paddingBottom="@dimen/padding_20"/>
 
-    <EditText
-        android:id="@+id/Answer2"
-        style="@style/SurveyAnswer"
-        android:inputType="number"/>
-
-    <include layout="@layout/survey_next_back_btn"/>
+    <include layout = "@layout/survey_submit_back_btn"/>
 
 </LinearLayout>

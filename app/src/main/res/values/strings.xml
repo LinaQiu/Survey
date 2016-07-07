@@ -28,18 +28,11 @@
     <string name="Friday">Friday</string>
     <!--End.-->
 
-    <string-array name="answer_array">
-        <item></item>
-        <item>Less than High School</item>
-        <item>High School</item>
-        <item>University (Bachelor’s)</item>
-        <item>Graduate School (Master or PhD)</item>
-        <item>Professional School</item>
-    </string-array>
-
     <string name="app_name">Survey</string>
 
     <string name="action_settings">setting</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
+    <string name="readyToSubmit">Ready to submit all answers?</string>
+    <string name="submit">Submit</string>
 </resources>
