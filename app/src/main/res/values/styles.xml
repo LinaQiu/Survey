@@ -51,7 +51,7 @@
     </style>
 
     <style name="SurveyQuestion"
-        parent="@style/WrapContent">
+        parent="@style/FitWidth">
         <item name="android:textSize">@dimen/survey_question_text_size</item>
     </style>
 
@@ -101,6 +101,15 @@
         <item name="android:textSize">@dimen/survey_question_text_size</item>
         <item name="android:button">@null</item>
         <item name="android:drawableRight">?android:attr/listChoiceIndicatorSingle</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:paddingBottom">@dimen/padding_20</item>
+    </style>
+
+    <style name="Answer.CheckedTextView"
+        parent="FitWidth">
+        <item name="android:textSize">@dimen/survey_answer_text_size</item>
+        <item name="android:checkMark">?android:attr/listChoiceIndicatorMultiple</item>
+        <item name="android:clickable">true</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:paddingBottom">@dimen/padding_20</item>
     </style>

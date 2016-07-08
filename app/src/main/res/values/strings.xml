@@ -19,6 +19,14 @@
     <string name="DeviceSharing_Q3_c">Workmates</string>
     <string name="DeviceSharing_Q3_d">Unknown people</string>
     <string name="DeviceSharing_Q3_e">Other (Please specify.)</string>
+
+    <string-array name="DeviceSharing_Q3_Choices">
+        <item>Friends</item>
+        <item>Family</item>
+        <item>Workmates</item>
+        <item>Unknown people</item>
+        <item>Other (Please specify.)</item>
+    </string-array>
     <string name="pleaseSpecify">Please specify your answer here.</string>
     <string name="SetWeeklyDeviceSharingSurveyPopupDay">Please choose a weekday that you are willing to fill in the weekly device sharing survey.</string>
     <string name="Monday">Monday</string>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/FitWidth"
+    android:paddingTop="@dimen/padding_20">
+
+    <LinearLayout android:id="@+id/item_answer_container"
+        android:orientation="vertical"
+        style="@style/FitWidth"/>
+
+</ScrollView>

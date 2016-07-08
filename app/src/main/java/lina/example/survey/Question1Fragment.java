@@ -1,22 +1,13 @@
 package lina.example.survey;
 
-import org.greenrobot.eventbus.EventBus;
-
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -30,11 +21,16 @@ public class Question1Fragment extends BaseFragment {
     @BindView(R.id.weekly_device_survey_next_button_active)
     Button btnNextActive;
 
+    @BindView(R.id.weekly_device_survey_next_button_inactive)
+    Button btnNextInactive;
+
     @BindView(R.id.weekly_device_survey_back_button)
     Button btnBack;
 
     @BindView(R.id.Answer1)
     EditText etAnswer1;
+
+    private final static String TAG = Question1Fragment.class.getSimpleName();
 
     public static final Question1Fragment newInstance() {
         Bundle args =  new Bundle();
@@ -52,15 +48,26 @@ public class Question1Fragment extends BaseFragment {
     public void setup(){
         setQuestion(getString(R.string.DeviceSharingQuestion1));
         disableBackBtn();
+        observeUserInput();
     }
 
-    public void setQuestion(String question) {
+    private void setQuestion(String question) {
         tvQuestion1.setText(question);
     }
 
-    public void disableBackBtn() {
+    private void observeUserInput() {
+        ObservableHelper.textInputLengthValidity(etAnswer1).subscribe(this::setNextBtnState,
+            e -> Log.e(TAG, "validateNextButtonState: ", e));
+    }
+
+    private void disableBackBtn() {
         btnBack.setClickable(false);
         btnBack.setVisibility(View.GONE);
+    }
+
+    private void setNextBtnState(boolean active) {
+        btnNextActive.setVisibility(active ? View.VISIBLE : View.GONE);
+        btnNextInactive.setVisibility(active ? View.GONE : View.VISIBLE);
     }
 
     @OnClick(R.id.weekly_device_survey_next_button_active)

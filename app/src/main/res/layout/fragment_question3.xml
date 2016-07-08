@@ -9,32 +9,47 @@
         android:text="test"/>
 
     <LinearLayout
-        style="@style/SurveyQuestion"
+        style="@style/SurveyAnswer"
         android:orientation="vertical">
 
         <CheckBox
+            android:id="@+id/cb_device_sharing_q3_a"
             style="@style/WrapContent"
             android:text="@string/DeviceSharing_Q3_a"/>
 
         <CheckBox
+            android:id="@+id/cb_device_sharing_q3_b"
             style="@style/WrapContent"
             android:text="@string/DeviceSharing_Q3_b"/>
 
         <CheckBox
+            android:id="@+id/cb_device_sharing_q3_c"
             style="@style/WrapContent"
             android:text="@string/DeviceSharing_Q3_c"/>
 
         <CheckBox
+            android:id="@+id/cb_device_sharing_q3_d"
             style="@style/WrapContent"
             android:text="@string/DeviceSharing_Q3_d"/>
 
         <CheckBox
+            android:id="@+id/cb_device_sharing_q3_e"
             style="@style/WrapContent"
             android:text="@string/DeviceSharing_Q3_e"/>
         <EditText
+            android:id="@+id/et_please_specify"
             style="@style/SurveyAnswer"
-            android:hint="@string/pleaseSpecify"/>
+            android:hint="@string/pleaseSpecify"
+            android:enabled="false"/>
     </LinearLayout>
+
+    <!--
+    <include layout="@layout/layout_answers"/>
+    <EditText
+        android:id="@+id/et_please_specify"
+        style="@style/FitWidth"
+        android:hint="@string/pleaseSpecify"/>
+    -->
 
     <include layout="@layout/survey_next_back_btn"/>
 

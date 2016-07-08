@@ -1,12 +1,6 @@
 package lina.example.survey;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 
 import butterknife.ButterKnife;
@@ -27,5 +21,15 @@ public class MainActivity extends FragmentActivity {
         }
 
         ButterKnife.bind(this);
+        initContextor();
+        initPreferencesHelper();
+    }
+
+    private void initContextor() {
+        Contextor.getInstance().init(getApplicationContext());
+    }
+
+    private void initPreferencesHelper() {
+        PreferencesHelper.init();
     }
 }

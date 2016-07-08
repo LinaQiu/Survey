@@ -98,5 +98,4 @@ public abstract class BaseFragment extends Fragment{
         transaction.replace(R.id.fragment_container, fragment);
         transaction.commit();
     }
-
 }

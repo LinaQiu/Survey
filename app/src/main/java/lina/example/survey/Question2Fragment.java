@@ -2,6 +2,7 @@ package lina.example.survey;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,8 +21,13 @@ public class Question2Fragment extends BaseFragment {
     @BindView(R.id.weekly_device_survey_next_button_active)
     Button btnNextActive;
 
+    @BindView(R.id.weekly_device_survey_next_button_inactive)
+    Button btnNextInactive;
+
     @BindView(R.id.Answer2)
     EditText etAnswer2;
+
+    private final static String TAG = Question2Fragment.class.getSimpleName();
 
     public static final Question2Fragment newInstance() {
         Bundle args =  new Bundle();
@@ -38,10 +44,21 @@ public class Question2Fragment extends BaseFragment {
     @Override
     public void setup() {
         setQuestion(getString(R.string.DeviceSharingQuestion2_head)+" Wednesday, "+getString(R.string.DeviceSharingQuestion2_tail));
+        observeUserInput();
     }
 
     public void setQuestion(String question) {
         tvQuestion2.setText(question);
+    }
+
+    private void observeUserInput() {
+        ObservableHelper.textInputLengthValidity(etAnswer2).subscribe(this::setNextBtnState,
+            e -> Log.e(TAG, "validateNextButtonState: ", e));
+    }
+
+    private void setNextBtnState(boolean active) {
+        btnNextActive.setVisibility(active ? View.VISIBLE : View.GONE);
+        btnNextInactive.setVisibility(active ? View.GONE : View.VISIBLE);
     }
 
     @OnClick(R.id.weekly_device_survey_next_button_active)
