@@ -1,11 +1,21 @@
 package lina.example.survey;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by lina on 2016-07-07.
  */
 public class SubmitFragment extends BaseFragment {
+
+    @BindView(R.id.btn_submit)
+    Button btnSubmit;
+
+    private static final String TAG = SubmitFragment.class.getSimpleName();
 
     public static final SubmitFragment newInstance() {
         Bundle args =  new Bundle();
@@ -22,5 +32,10 @@ public class SubmitFragment extends BaseFragment {
     @Override
     public void setup() {
 
+    }
+
+    @OnClick(R.id.btn_submit)
+    public void onSubmitBtnClick() {
+        Log.e(TAG, DataHelper.getWeeklyDeviceSharingOpinion() + DataHelper.getWeeklyDeviceSharingTimes());
     }
 }

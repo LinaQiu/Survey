@@ -74,6 +74,7 @@ public class Question1Fragment extends BaseFragment {
     public void onNextBtnClick() {
         String userAnswer = etAnswer1.getText().toString();
         Log.i("LinaTest", "userAnswer1: " + userAnswer);
+        DataHelper.saveWeeklyDeviceSharingOpinion(userAnswer);
         changeFragment(Question2Fragment.newInstance());
     }
 }

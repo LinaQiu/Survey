@@ -29,10 +29,6 @@ public class Question3Fragment extends BaseFragment {
     @BindView(R.id.weekly_device_survey_next_button_inactive)
     Button btnNextInactive;
 
-    @Nullable
-    @BindView(R.id.item_answer_container)
-    LinearLayout llAnswer3;
-
     @BindView(R.id.cb_device_sharing_q3_a)
     CheckBox cbDeviceSharingQ3_a;
 
@@ -143,7 +139,6 @@ public class Question3Fragment extends BaseFragment {
 
     @OnClick(R.id.weekly_device_survey_next_button_active)
     public void onNextBtnClick(){
-        //answersCheckboxUtil.saveCheckedValue(llAnswer3, DataHelper.Key.WEEKLY_DEVICE_SHARING_PEOPLE);
         changeFragment(SubmitFragment.newInstance());
     }
 }

@@ -65,6 +65,7 @@ public class Question2Fragment extends BaseFragment {
     public void onNextBtnClick() {
         String userAnswer = etAnswer2.getText().toString();
         Log.i("LinaTest", "userAnswer2: " + userAnswer);
+        DataHelper.saveWeeklyDeviceSharingTimes(Integer.parseInt(userAnswer));
         if (userAnswer.equals("0")) {
             changeFragment(SubmitFragment.newInstance());
         }else {

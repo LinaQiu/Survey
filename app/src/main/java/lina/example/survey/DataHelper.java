@@ -12,9 +12,13 @@ import java.lang.annotation.RetentionPolicy;
  */
 public class DataHelper {
 
-    @StringDef({"weeklyDeviceSharingPeople"})
+    @StringDef({ "weeklyDeviceSharingOpinion", "weeklyDeviceSharingTimes", "weeklyDeviceSharingPeople"})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Key {
+
+        String WEEKLY_DEVICE_SHARING_Opinion = "weeklyDeviceSharingOpinion";
+
+        String WEEKLY_DEVICE_SHARING_TIMES = "weeklyDeviceSharingTimes";
 
         String WEEKLY_DEVICE_SHARING_PEOPLE = "weeklyDeviceSharingPeople";
     }
@@ -36,12 +40,30 @@ public class DataHelper {
         }
     }
 
+    public static void saveWeeklyDeviceSharingOpinion(String sharingOpinion) {
+        PreferencesHelper.saveData(Key.WEEKLY_DEVICE_SHARING_Opinion, sharingOpinion);
+    }
+
+    public static String getWeeklyDeviceSharingOpinion() {
+        return PreferencesHelper.getString(Key.WEEKLY_DEVICE_SHARING_Opinion);
+    }
+
+    public static void saveWeeklyDeviceSharingTimes(int sharingTimes) {
+        PreferencesHelper.saveData(Key.WEEKLY_DEVICE_SHARING_TIMES, sharingTimes);
+    }
+
+    public static int getWeeklyDeviceSharingTimes() {
+        return PreferencesHelper.getInt(Key.WEEKLY_DEVICE_SHARING_TIMES);
+    }
+
     public static void clearAnswers(@DataHelper.Key String key) {
         PreferencesHelper.clearData(key);
     }
 
     public static void clearWeeklyDeviceSharingSurveyAnswers() {
-        clearAnswers(new String[] {Key.WEEKLY_DEVICE_SHARING_PEOPLE});
+        clearAnswers(new String[] {Key.WEEKLY_DEVICE_SHARING_Opinion,
+            Key.WEEKLY_DEVICE_SHARING_TIMES,
+            Key.WEEKLY_DEVICE_SHARING_PEOPLE});
     }
 
 }
