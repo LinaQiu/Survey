@@ -1,13 +1,11 @@
 package lina.example.survey;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -51,7 +49,7 @@ public class Question3Fragment extends BaseFragment {
 
     private static int checkedboxNum = 0;
 
-    BehaviorSubject<Integer> totalCheckedboxNum = BehaviorSubject.create(0);
+    private BehaviorSubject<Integer> totalCheckedboxNum = BehaviorSubject.create(0);
 
     public static final Question3Fragment newInstance() {
         Bundle args =  new Bundle();
@@ -139,6 +137,25 @@ public class Question3Fragment extends BaseFragment {
 
     @OnClick(R.id.weekly_device_survey_next_button_active)
     public void onNextBtnClick(){
+        Log.e(TAG, getAllCheckboxesAnswer());
+        DataHelper.saveWeeklyDeviceSharingPeople(getAllCheckboxesAnswer());
         changeFragment(SubmitFragment.newInstance());
+    }
+
+    private String getCheckboxAnswer(CheckBox checkBox) {
+        if (checkBox.isChecked()) {
+            if (checkBox != cbDeviceSharingQ3_e) {
+                return checkBox.getText().toString();
+            } else {
+                String specifyPeople = etPleaseSpecify.getText().toString();
+                return checkBox.getText().toString() + specifyPeople;
+            }
+        }
+        return null;
+    }
+
+    private String getAllCheckboxesAnswer() {
+        return getCheckboxAnswer(cbDeviceSharingQ3_a)+", "+ getCheckboxAnswer(cbDeviceSharingQ3_b)+", "+ getCheckboxAnswer(cbDeviceSharingQ3_c)
+            +", "+ getCheckboxAnswer(cbDeviceSharingQ4_d)+", "+ getCheckboxAnswer(cbDeviceSharingQ3_e);
     }
 }

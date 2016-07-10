@@ -2,6 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     style="@style/MatchParent"
+    android:gravity="bottom"
+    android:paddingBottom="@dimen/padding_10"
     android:elevation="2dp">
 
     <Button

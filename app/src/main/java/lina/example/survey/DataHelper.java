@@ -40,6 +40,14 @@ public class DataHelper {
         }
     }
 
+    public static void saveWeeklyDeviceSharingPeople(String sharingPeople) {
+        PreferencesHelper.saveData(Key.WEEKLY_DEVICE_SHARING_PEOPLE, sharingPeople);
+    }
+
+    public static String getWeeklyDeviceSharingPeople() {
+        return PreferencesHelper.getString(Key.WEEKLY_DEVICE_SHARING_PEOPLE);
+    }
+
     public static void saveWeeklyDeviceSharingOpinion(String sharingOpinion) {
         PreferencesHelper.saveData(Key.WEEKLY_DEVICE_SHARING_Opinion, sharingOpinion);
     }

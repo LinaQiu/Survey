@@ -36,6 +36,6 @@ public class SubmitFragment extends BaseFragment {
 
     @OnClick(R.id.btn_submit)
     public void onSubmitBtnClick() {
-        Log.e(TAG, DataHelper.getWeeklyDeviceSharingOpinion() + DataHelper.getWeeklyDeviceSharingTimes());
+        Log.e(TAG, DataHelper.getWeeklyDeviceSharingOpinion() + DataHelper.getWeeklyDeviceSharingTimes()+DataHelper.getWeeklyDeviceSharingPeople());
     }
 }
