@@ -1,5 +1,7 @@
 package lina.example.survey;
 
+import org.greenrobot.eventbus.EventBus;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -47,6 +49,16 @@ public class Question2Fragment extends BaseFragment {
         observeUserInput();
     }
 
+    public void onResume() {
+        super.onResume();
+        preFilledUserInput();
+    }
+
+    private void preFilledUserInput() {
+        int deviceSharingTimes = DataHelper.getWeeklyDeviceSharingTimes();
+        etAnswer2.setText(deviceSharingTimes >= 0 ? deviceSharingTimes+"" : "");
+    }
+
     public void setQuestion(String question) {
         tvQuestion2.setText(question);
     }
@@ -66,10 +78,13 @@ public class Question2Fragment extends BaseFragment {
         String userAnswer = etAnswer2.getText().toString();
         Log.i("LinaTest", "userAnswer2: " + userAnswer);
         DataHelper.saveWeeklyDeviceSharingTimes(Integer.parseInt(userAnswer));
+
         if (userAnswer.equals("0")) {
             changeFragment(SubmitFragment.newInstance());
         }else {
             changeFragment(Question3Fragment.newInstance());
         }
+
+        //EventBus.getDefault().post(new WeeklyDeviceSharingQuestions(WeeklyDeviceSharingQuestions.From.WEEKLY_DEVICE_SHARING_SURVEY_Q2));
     }
 }

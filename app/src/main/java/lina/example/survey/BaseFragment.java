@@ -1,5 +1,8 @@
 package lina.example.survey;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -21,7 +24,9 @@ import butterknife.Unbinder;
  */
 public abstract class BaseFragment extends Fragment{
 
-    private Activity activity;
+    protected Activity activity;
+
+    protected FragmentLoader fragmentLoader;
 
     private Unbinder unbinder;
 
@@ -31,6 +36,7 @@ public abstract class BaseFragment extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -67,11 +73,13 @@ public abstract class BaseFragment extends Fragment{
     @Override
     public void onDestroyView() {
         unbinder.unbind();
+        EventBus.getDefault().post("EventBus is destroyed.");
         super.onDestroyView();
     }
 
     @Override
     public void onStop() {
+        EventBus.getDefault().unregister(this);
         super.onStop();
     }
 
@@ -87,6 +95,18 @@ public abstract class BaseFragment extends Fragment{
     @Optional
     public void onBackBtnClick() {
         activity.onBackPressed();
+    }
+
+    private void initFragmentLoader() {
+        fragmentLoader = new FragmentLoader(getChildFragmentManager());
+    }
+
+    /**
+     * EventBus' Default event implementation
+     */
+    @Subscribe
+    public void onDefaultEvent(DefaultEvent defaultEvent) {
+        // no-op by default
     }
 
     public void changeFragment(Fragment fragment) {

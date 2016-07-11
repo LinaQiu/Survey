@@ -1,5 +1,7 @@
 package lina.example.survey;
 
+import org.greenrobot.eventbus.EventBus;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -140,6 +142,7 @@ public class Question3Fragment extends BaseFragment {
         Log.e(TAG, getAllCheckboxesAnswer());
         DataHelper.saveWeeklyDeviceSharingPeople(getAllCheckboxesAnswer());
         changeFragment(SubmitFragment.newInstance());
+        //EventBus.getDefault().post(new WeeklyDeviceSharingQuestions(WeeklyDeviceSharingQuestions.From.WEEKLY_DEVICE_SHARING_SURVEY_Q3));
     }
 
     private String getCheckboxAnswer(CheckBox checkBox) {
