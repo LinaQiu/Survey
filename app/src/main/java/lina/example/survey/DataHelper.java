@@ -12,15 +12,20 @@ import java.lang.annotation.RetentionPolicy;
  */
 public class DataHelper {
 
-    @StringDef({ "weeklyDeviceSharingOpinion", "weeklyDeviceSharingTimes", "weeklyDeviceSharingPeople"})
+    @StringDef({ "weeklyDeviceSharingOpinion", "weeklyDeviceSharingTimes", "weeklyDeviceSharingCheckboxString",
+        "weeklyDeviceSharingCheckboxId", "weeklyDeviceSharingSpecifyPeople"})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Key {
 
-        String WEEKLY_DEVICE_SHARING_Opinion = "weeklyDeviceSharingOpinion";
+        String WEEKLY_DEVICE_SHARING_OPINION = "weeklyDeviceSharingOpinion";
 
         String WEEKLY_DEVICE_SHARING_TIMES = "weeklyDeviceSharingTimes";
 
-        String WEEKLY_DEVICE_SHARING_PEOPLE = "weeklyDeviceSharingPeople";
+        String WEEKLY_DEVICE_SHARING_CHECKBOX_STRING = "weeklyDeviceSharingCheckboxString";
+
+        String WEEKLY_DEVICE_SHARING_CHECKBOX_ID = "weeklyDeviceSharingCheckboxId";
+
+        String WEEKLY_DEVICE_SHARING_SPECIFY_PEOPLE = "weeklyDeviceSharingSpecifyPeople";
     }
     private static Gson gson() {
         return new Gson();
@@ -40,20 +45,12 @@ public class DataHelper {
         }
     }
 
-    public static void saveWeeklyDeviceSharingPeople(String sharingPeople) {
-        PreferencesHelper.saveData(Key.WEEKLY_DEVICE_SHARING_PEOPLE, sharingPeople);
+    public static void saveStringAnswers(@DataHelper.Key String key, String answerString) {
+        PreferencesHelper.saveData(key, answerString);
     }
 
-    public static String getWeeklyDeviceSharingPeople() {
-        return PreferencesHelper.getString(Key.WEEKLY_DEVICE_SHARING_PEOPLE);
-    }
-
-    public static void saveWeeklyDeviceSharingOpinion(String sharingOpinion) {
-        PreferencesHelper.saveData(Key.WEEKLY_DEVICE_SHARING_Opinion, sharingOpinion);
-    }
-
-    public static String getWeeklyDeviceSharingOpinion() {
-        return PreferencesHelper.getString(Key.WEEKLY_DEVICE_SHARING_Opinion);
+    public static String getStringAnswers(@DataHelper.Key String key) {
+        return PreferencesHelper.getString(key);
     }
 
     public static void saveWeeklyDeviceSharingTimes(int sharingTimes) {
@@ -69,9 +66,11 @@ public class DataHelper {
     }
 
     public static void clearWeeklyDeviceSharingSurveyAnswers() {
-        clearAnswers(new String[] {Key.WEEKLY_DEVICE_SHARING_Opinion,
+        clearAnswers(new String[] {Key.WEEKLY_DEVICE_SHARING_OPINION,
             Key.WEEKLY_DEVICE_SHARING_TIMES,
-            Key.WEEKLY_DEVICE_SHARING_PEOPLE});
+            Key.WEEKLY_DEVICE_SHARING_CHECKBOX_ID,
+            Key.WEEKLY_DEVICE_SHARING_CHECKBOX_STRING,
+            Key.WEEKLY_DEVICE_SHARING_SPECIFY_PEOPLE});
     }
 
 }

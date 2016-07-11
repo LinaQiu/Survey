@@ -1,13 +1,13 @@
 package lina.example.survey;
 
-import org.greenrobot.eventbus.EventBus;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -29,6 +29,7 @@ public class Question3Fragment extends BaseFragment {
     @BindView(R.id.weekly_device_survey_next_button_inactive)
     Button btnNextInactive;
 
+    /*
     @BindView(R.id.cb_device_sharing_q3_a)
     CheckBox cbDeviceSharingQ3_a;
 
@@ -43,9 +44,15 @@ public class Question3Fragment extends BaseFragment {
 
     @BindView(R.id.cb_device_sharing_q3_e)
     CheckBox cbDeviceSharingQ3_e;
+    */
 
     @BindView(R.id.et_please_specify)
     EditText etPleaseSpecify;
+
+    @BindView(R.id.item_answer_container)
+    LinearLayout llCheckboxes;
+
+    private AnswersCheckboxUtil answersCheckboxUtil;
 
     private static final String TAG = Question3Fragment.class.getSimpleName();
 
@@ -62,39 +69,58 @@ public class Question3Fragment extends BaseFragment {
 
     @Override
     public int getLayout() {
-        return R.layout.fragment_question3;
+        return R.layout.fragment_question3_dynamical;
     }
 
     @Override
     public void setup(){
+        initAnswersCheckboxUtil();
         setQuestion(getString(R.string.DeviceSharingQuestion3));
-        observeAllCheckboxes();
+        setAnswers();
+        observeAllCheckboxes(llCheckboxes);
     }
 
-    public void setQuestion(String question) {
+    @Override
+    public void onResume(){
+        super.onResume();
+        preFilledUserInput();
+    }
+
+    private void initAnswersCheckboxUtil() {
+        answersCheckboxUtil = new AnswersCheckboxUtil();
+    }
+
+    private void setQuestion(String question) {
         tvQuestion3.setText(question);
     }
 
-    private void observeAllCheckboxes(){
-        observeSingleCheckbox(cbDeviceSharingQ3_a);
-        observeSingleCheckbox(cbDeviceSharingQ3_b);
-        observeSingleCheckbox(cbDeviceSharingQ3_c);
-        observeSingleCheckbox(cbDeviceSharingQ4_d);
-        observeSingleCheckbox(cbDeviceSharingQ3_e);
-
-        subscribeTotalCheckedboxNum();
+    private void setAnswers() {
+        answersCheckboxUtil.addCheckboxes(getContext(), llCheckboxes,
+            getResources().getStringArray(R.array.DeviceSharing_Q3_Choices));
+        answersCheckboxUtil.preFilledCheckboxes(llCheckboxes,
+            DataHelper.Key.WEEKLY_DEVICE_SHARING_CHECKBOX_ID);
     }
 
-    private void observeSingleCheckbox(CheckBox checkBox) {
-        if (checkBox == cbDeviceSharingQ3_e) {
-            ObservableHelper.checkedboxValidity(checkBox).subscribe(this::enablePleaseSpecifyEditText,
-                e -> Log.e(TAG, "validateNextButtonState: ", e));
-            ObservableHelper.textInputLengthValidity(etPleaseSpecify).subscribe(this::countCheckedbox,
-                e -> Log.e(TAG, "validateNextButtonState: ", e));
-        } else {
-            ObservableHelper.checkedboxValidity(checkBox).subscribe(this::countCheckedbox,
-                e -> Log.e(TAG, "validateNextButtonState: ", e));
+    private void preFilledUserInput() {
+        String deviceSharingSpecifyPeople = DataHelper.getStringAnswers(DataHelper.Key.WEEKLY_DEVICE_SHARING_SPECIFY_PEOPLE);
+        etPleaseSpecify.setText(deviceSharingSpecifyPeople);
+    }
+
+    private void observeAllCheckboxes(ViewGroup parent){
+        for (int i=0; i<parent.getChildCount();i++){
+            View child = parent.getChildAt(i);
+            CheckBox checkBox = (CheckBox) child;
+            if (i<parent.getChildCount()-1){
+                ObservableHelper.checkedboxValidity(checkBox).subscribe(this::countCheckedbox,
+                    e -> Log.e(TAG, "validateNextButtonState: ", e));
+            }else {
+                ObservableHelper.checkedboxValidity(checkBox).subscribe(this::enablePleaseSpecifyEditText,
+                    e -> Log.e(TAG, "validateNextButtonState: ", e));
+                ObservableHelper.textInputLengthValidity(etPleaseSpecify).subscribe(this::countCheckedbox,
+                    e -> Log.e(TAG, "validateNextButtonState: ", e));
+            }
         }
+        subscribeTotalCheckedboxNum();
     }
 
     private void subscribeTotalCheckedboxNum() {
@@ -139,12 +165,41 @@ public class Question3Fragment extends BaseFragment {
 
     @OnClick(R.id.weekly_device_survey_next_button_active)
     public void onNextBtnClick(){
-        Log.e(TAG, getAllCheckboxesAnswer());
-        DataHelper.saveWeeklyDeviceSharingPeople(getAllCheckboxesAnswer());
+        //Log.e(TAG, getAllCheckboxesAnswer());
+        //DataHelper.saveWeeklyDeviceSharingPeople(getAllCheckboxesAnswer());
+        answersCheckboxUtil.saveCheckedboxesIds(llCheckboxes, DataHelper.Key.WEEKLY_DEVICE_SHARING_CHECKBOX_ID);
+        answersCheckboxUtil.saveCheckedboxStrings(llCheckboxes, DataHelper.Key.WEEKLY_DEVICE_SHARING_CHECKBOX_STRING);
+        DataHelper.saveStringAnswers(DataHelper.Key.WEEKLY_DEVICE_SHARING_SPECIFY_PEOPLE, etPleaseSpecify.getText().toString());
         changeFragment(SubmitFragment.newInstance());
         //EventBus.getDefault().post(new WeeklyDeviceSharingQuestions(WeeklyDeviceSharingQuestions.From.WEEKLY_DEVICE_SHARING_SURVEY_Q3));
     }
 
+     /*
+    private void observeAllCheckboxes(){
+        observeSingleCheckbox(cbDeviceSharingQ3_a);
+        observeSingleCheckbox(cbDeviceSharingQ3_b);
+        observeSingleCheckbox(cbDeviceSharingQ3_c);
+        observeSingleCheckbox(cbDeviceSharingQ4_d);
+        observeSingleCheckbox(cbDeviceSharingQ3_e);
+
+        subscribeTotalCheckedboxNum();
+    }
+
+
+    private void observeSingleCheckbox(CheckBox checkBox) {
+        if (checkBox == cbDeviceSharingQ3_e) {
+            ObservableHelper.checkedboxValidity(checkBox).subscribe(this::enablePleaseSpecifyEditText,
+                e -> Log.e(TAG, "validateNextButtonState: ", e));
+            ObservableHelper.textInputLengthValidity(etPleaseSpecify).subscribe(this::countCheckedbox,
+                e -> Log.e(TAG, "validateNextButtonState: ", e));
+        } else {
+            ObservableHelper.checkedboxValidity(checkBox).subscribe(this::countCheckedbox,
+                e -> Log.e(TAG, "validateNextButtonState: ", e));
+        }
+    }
+    */
+
+    /*
     private String getCheckboxAnswer(CheckBox checkBox) {
         if (checkBox.isChecked()) {
             if (checkBox != cbDeviceSharingQ3_e) {
@@ -161,4 +216,5 @@ public class Question3Fragment extends BaseFragment {
         return getCheckboxAnswer(cbDeviceSharingQ3_a)+", "+ getCheckboxAnswer(cbDeviceSharingQ3_b)+", "+ getCheckboxAnswer(cbDeviceSharingQ3_c)
             +", "+ getCheckboxAnswer(cbDeviceSharingQ4_d)+", "+ getCheckboxAnswer(cbDeviceSharingQ3_e);
     }
+    */
 }

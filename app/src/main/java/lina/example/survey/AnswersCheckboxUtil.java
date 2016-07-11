@@ -1,11 +1,12 @@
 package lina.example.survey;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.CheckedTextView;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -18,12 +19,12 @@ public class AnswersCheckboxUtil {
 
     public void addCheckboxes(Context context, LinearLayout linearLayout, String [] answers) {
         for (int i = 0; i < answers.length; i++) {
-            CheckedTextView checkedTextView = (CheckedTextView) LayoutInflater.from(context)
+            CheckBox checkBox = (CheckBox) LayoutInflater.from(context)
                 .inflate(R.layout.item_checkbox_answers, null);
-            checkedTextView.setText(answers[i]);
-            checkedTextView.setId(i);
-            checkedTextView.setOnClickListener(v -> ((CheckedTextView) v).toggle());
-            linearLayout.addView(checkedTextView);
+            checkBox.setText(answers[i]);
+            checkBox.setId(i);
+            //checkBox.setOnClickListener(v -> ((CheckedTextView) v).toggle());
+            linearLayout.addView(checkBox);
         }
     }
 
@@ -31,9 +32,9 @@ public class AnswersCheckboxUtil {
         List<Integer> checkedIds = new ArrayList<>();
         for (int i = 0; i < parent.getChildCount(); i++) {
             View child = parent.getChildAt(i);
-            CheckedTextView checkedTextView = (CheckedTextView) child;
-            if (checkedTextView.isChecked()) {
-                checkedIds.add(checkedTextView.getId());
+            CheckBox checkBox = (CheckBox) child;
+            if (checkBox.isChecked()) {
+                checkedIds.add(checkBox.getId());
             }
         }
         return new Answer(checkedIds);
@@ -44,14 +45,26 @@ public class AnswersCheckboxUtil {
             Answer answer = DataHelper.getAnswer(key);
             for (Integer id : answer.getViewId()) {
                 View child = parent.findViewById(id);
-                CheckedTextView checkedTextView = (CheckedTextView) child;
-                checkedTextView.setChecked(true);
+                CheckBox checkBox = (CheckBox) child;
+                checkBox.setChecked(true);
             }
         }
     }
 
-    public void saveCheckedValue(ViewGroup parent, String key) {
+    public void saveCheckedboxesIds(ViewGroup parent, String key) {
         DataHelper.saveAnswer(key, getCheckedValue(parent));
     }
 
+    public void saveCheckedboxStrings(ViewGroup parent, String key) {
+        String deviceSharingPeople = "";
+        if (getCheckedValue(parent) != null) {
+            Answer answer = getCheckedValue(parent);
+            for (Integer id : answer.getViewId()) {
+                View child = parent.findViewById(id);
+                CheckBox checkBox = (CheckBox) child;
+                deviceSharingPeople+=checkBox.getText().toString()+", ";
+            }
+        }
+        DataHelper.saveStringAnswers(key, deviceSharingPeople);
+    }
 }
