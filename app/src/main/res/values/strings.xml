@@ -43,4 +43,15 @@
     <string name="back">Back</string>
     <string name="readyToSubmit">Ready to submit all answers?</string>
     <string name="submit">Submit</string>
+
+    <string name="askToChooseWeeklyDeviceSharingDay">During the study, you will need to fill in a short weekly survey about your experience on sharing phone with other people. This survey will be presented at a certain day of a week. Please choose a day that you prefer to fill in the survey below.</string>
+    <string-array name="weekday">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
 </resources>

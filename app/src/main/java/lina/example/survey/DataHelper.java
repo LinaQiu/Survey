@@ -13,7 +13,7 @@ import java.lang.annotation.RetentionPolicy;
 public class DataHelper {
 
     @StringDef({ "weeklyDeviceSharingOpinion", "weeklyDeviceSharingTimes", "weeklyDeviceSharingCheckboxString",
-        "weeklyDeviceSharingCheckboxId", "weeklyDeviceSharingSpecifyPeople"})
+        "weeklyDeviceSharingCheckboxId", "weeklyDeviceSharingSpecifyPeople", "WeekdayId", "WeekdayString"})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Key {
 
@@ -26,6 +26,10 @@ public class DataHelper {
         String WEEKLY_DEVICE_SHARING_CHECKBOX_ID = "weeklyDeviceSharingCheckboxId";
 
         String WEEKLY_DEVICE_SHARING_SPECIFY_PEOPLE = "weeklyDeviceSharingSpecifyPeople";
+
+        String WEEKDAY_ID = "WeekdayId";
+
+        String WEEKDAY_STRING = "WeekdayString";
     }
     private static Gson gson() {
         return new Gson();
@@ -73,4 +77,7 @@ public class DataHelper {
             Key.WEEKLY_DEVICE_SHARING_SPECIFY_PEOPLE});
     }
 
+    public static void clearWeekdayChoice() {
+        clearAnswers(new String[] {Key.WEEKDAY_ID, Key.WEEKDAY_STRING});
+    }
 }

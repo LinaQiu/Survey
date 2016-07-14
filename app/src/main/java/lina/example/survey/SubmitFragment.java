@@ -1,5 +1,6 @@
 package lina.example.survey;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -39,5 +40,8 @@ public class SubmitFragment extends BaseFragment {
         Log.e(TAG, DataHelper.getStringAnswers(DataHelper.Key.WEEKLY_DEVICE_SHARING_OPINION) + DataHelper.getWeeklyDeviceSharingTimes()
             +DataHelper.getStringAnswers(DataHelper.Key.WEEKLY_DEVICE_SHARING_CHECKBOX_STRING)+DataHelper.getStringAnswers(DataHelper.Key.WEEKLY_DEVICE_SHARING_SPECIFY_PEOPLE));
     DataHelper.clearWeeklyDeviceSharingSurveyAnswers();
+
+        Intent intent = new Intent(getContext(),ChooseDeviceSharingSurveyPopUpDay.class);
+        startActivity(intent);
     }
 }

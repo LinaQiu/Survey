@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Survey">
+    <LinearLayout
+        style="@style/Survey"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_choose_a_day"
+            style="@style/FitWidth"
+            android:text="@string/askToChooseWeeklyDeviceSharingDay"/>
+
+        <include layout="@layout/layout_answers"/>
+
+        <RelativeLayout
+            style="@style/MatchParent"
+            android:gravity="bottom"
+            android:paddingBottom="@dimen/padding_10"
+            android:elevation="2dp">
+
+            <Button
+                android:id="@+id/btn_next_active"
+                style="@style/NextButton.Active"
+                android:clickable="true"
+                android:text="@string/submit">
+            </Button>
+
+            <Button
+                android:id="@+id/btn_next_inactive"
+                style="@style/NextButton.Inactive"
+                android:clickable="true"
+                android:text="@string/submit">
+            </Button>
+        </RelativeLayout>
+
+    </LinearLayout>
+</ScrollView>
